@@ -1,0 +1,7 @@
+zshrc.local
+*.before-headroom-*
+opencode/node_modules/
+opencode/package.json
+opencode/package-lock.json
+opencode/bun.lock
+opencode/plugins/

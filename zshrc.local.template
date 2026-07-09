@@ -1,0 +1,6 @@
+# Local secrets — copy to ~/.zshrc.local and fill in real values
+# This file is NOT tracked in the dotfiles repo.
+
+export GITLAB_TOKEN="glpat-your-token-here"
+export UV_INDEX_GITLAB_USERNAME="__token__"
+export UV_INDEX_GITLAB_PASSWORD="$GITLAB_TOKEN"
