@@ -25,7 +25,10 @@ echo "Copying zshrc (sanitizing secrets)..."
 cat "$HOME/.zshrc" | \
   sed '/^export GITLAB_TOKEN=/d' | \
   sed '/^export UV_INDEX_GITLAB_USERNAME=/d' | \
-  sed '/^export UV_INDEX_GITLAB_PASSWORD=/d' \
+  sed '/^export UV_INDEX_GITLAB_PASSWORD=/d' | \
+  sed 's|^eval "$(pyenv init -)"|# pyenv\nif command -v pyenv >/dev/null 2>\&1; then\n  eval "$(pyenv init -)"\nfi|' | \
+  sed 's|^source /opt/homebrew/share/google-cloud-sdk/path.zsh.inc|# gcloud SDK\nif [ -f /opt/homebrew/share/google-cloud-sdk/path.zsh.inc ]; then\n  source /opt/homebrew/share/google-cloud-sdk/path.zsh.inc\nfi|' | \
+  sed 's|^source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc|if [ -f /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc ]; then\n  source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc\nfi|' \
   > zshrc
 
 # Ensure source ~/.zshrc.local is present

@@ -124,7 +124,7 @@ if [ -f /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc ]; then
   source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
 fi
 
-# GitLab package registry auth (GITLAB_TOKEN, UV_INDEX_*) lives in ~/.zshrc.local
+# GitLab package registry auth (used by uv for the "gitlab" index)
 
 # Local secrets (GITLAB_TOKEN, UV_INDEX_* etc.) — not in the repo
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
