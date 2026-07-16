@@ -97,16 +97,8 @@ link "$REPO_DIR/opencode/.gitignore" "$HOME/.config/opencode/.gitignore"
 mkdir -p "$HOME/.config/herdr"
 link "$REPO_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 
-# --- zshrc.local (secrets) ---
-if [ ! -f "$HOME/.zshrc.local" ]; then
-  cp "$REPO_DIR/zshrc.local.template" "$HOME/.zshrc.local"
-  echo ""
-  echo "Created ~/.zshrc.local from template."
-  echo "Edit it to add your GITLAB_TOKEN and other secrets:"
-  echo "  vim ~/.zshrc.local"
-else
-  echo "~/.zshrc.local already exists, keeping it."
-fi
+# --- Secrets (interactive) ---
+"$REPO_DIR/scripts/secret_setup.sh"
 
 # --- Install vim plugins ---
 if command -v vim >/dev/null 2>&1; then
@@ -125,7 +117,7 @@ echo ""
 echo "=== Done! ==="
 echo ""
 echo "Remaining manual steps:"
-echo "  1. Edit ~/.zshrc.local with your secrets (GITLAB_TOKEN, etc.)"
+echo "  1. If you skipped the token prompts, run: ./scripts/secret_setup.sh"
 echo "  2. Grant Hammerspoon Accessibility permissions:"
 echo "     System Settings -> Privacy & Security -> Accessibility -> Hammerspoon"
 echo "  3. Restart your shell: exec zsh"

@@ -10,7 +10,7 @@ cd ~/dotfiles && ./install.sh
 ```
 
 Then:
-1. Edit `~/.zshrc.local` with your secrets (see `zshrc.local.template`)
+1. Enter tokens when prompted (or run `./scripts/secret_setup.sh` later)
 2. Grant Hammerspoon Accessibility permissions (System Settings → Privacy & Security → Accessibility)
 3. `exec zsh`
 4. `tmux + I` (install tmux plugins)
@@ -33,5 +33,7 @@ git add -A && git commit -m "sync dotfiles" && git push
 | `hammerspoon/init.lua` | Mouse button 3 → Ghostty toggle_visibility |
 | `opencode/opencode.json` | opencode AI CLI config |
 | `herdr/config.toml` | Herdr terminal workspace manager config (keybinds, theme, UI) |
+| `scripts/secret_setup.sh` | Interactive prompt for GITLAB_TOKEN, GITHUB_TOKEN, and git credential store |
 
-Secrets (GITLAB_TOKEN, etc.) live in `~/.zshrc.local` — never committed.
+Secrets (GITLAB_TOKEN, GITHUB_TOKEN) live in `~/.zshrc.local` — never committed.
+To redo secrets: `./scripts/secret_setup.sh`
