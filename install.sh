@@ -93,6 +93,10 @@ link "$REPO_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 link "$REPO_DIR/opencode/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
 link "$REPO_DIR/opencode/.gitignore" "$HOME/.config/opencode/.gitignore"
 
+# Herdr (keep dir real for sockets/logs/session state, link only config.toml)
+mkdir -p "$HOME/.config/herdr"
+link "$REPO_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+
 # --- zshrc.local (secrets) ---
 if [ ! -f "$HOME/.zshrc.local" ]; then
   cp "$REPO_DIR/zshrc.local.template" "$HOME/.zshrc.local"

@@ -128,3 +128,4 @@ fi
 
 # Local secrets (GITLAB_TOKEN, UV_INDEX_* etc.) — not in the repo
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+eval "$(_LF_COMPLETE=zsh_source lf)"

@@ -51,6 +51,10 @@ echo "Copying opencode config..."
 cp "$HOME/.config/opencode/opencode.json" opencode/opencode.json
 cp "$HOME/.config/opencode/AGENTS.md" opencode/AGENTS.md
 
+# --- Herdr ---
+echo "Copying herdr config..."
+cp "$HOME/.config/herdr/config.toml" herdr/config.toml
+
 echo ""
 echo "=== Sync complete. Review changes with: git diff ==="
 echo "=== Commit and push with: git add -A && git commit -m 'sync dotfiles' && git push ==="

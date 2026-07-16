@@ -32,5 +32,6 @@ git add -A && git commit -m "sync dotfiles" && git push
 | `tmux.conf` | Tmux config (vi mode, TPM, resurrect/continuum) |
 | `hammerspoon/init.lua` | Mouse button 3 → Ghostty toggle_visibility |
 | `opencode/opencode.json` | opencode AI CLI config |
+| `herdr/config.toml` | Herdr terminal workspace manager config (keybinds, theme, UI) |
 
 Secrets (GITLAB_TOKEN, etc.) live in `~/.zshrc.local` — never committed.
