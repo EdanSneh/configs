@@ -38,6 +38,10 @@ if ! grep -q 'source ~/.zshrc.local' zshrc; then
   echo '[ -f ~/.zshrc.local ] && source ~/.zshrc.local' >> zshrc
 fi
 
+# --- Powerlevel10k ---
+echo "Copying p10k.zsh..."
+cp "$HOME/.p10k.zsh" p10k.zsh
+
 # --- Hammerspoon ---
 echo "Copying hammerspoon init.lua..."
 cp "$HOME/.hammerspoon/init.lua" hammerspoon/init.lua

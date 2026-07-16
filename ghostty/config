@@ -7,4 +7,5 @@ keybind = global:cmd+option+ctrl+t=toggle_visibility
 maximize = true
 macos-titlebar-style = tabs
 link-url = true
+font-family = "JetBrainsMono Nerd Font"
 theme = Wombat

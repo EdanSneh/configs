@@ -33,6 +33,11 @@ for item in "$REPO_DIR/oh-my-zsh-custom/themes/"*; do
   name="$(basename "$item")"
   [ -d "$item" ] || continue
   ln -sfn "$item" "$ZSH_CUSTOM/themes/$name"
+  # If the theme is a directory with a .zsh-theme file inside, also link the file
+  # so oh-my-zsh's is_theme() can find it
+  if [ -f "$item/$name.zsh-theme" ]; then
+    ln -sfn "$item/$name.zsh-theme" "$ZSH_CUSTOM/themes/$name.zsh-theme"
+  fi
   echo "  linked theme: $name"
 done
 
@@ -79,6 +84,9 @@ link "$REPO_DIR/vimrc" "$HOME/.vimrc"
 
 # Zsh
 link "$REPO_DIR/zshrc" "$HOME/.zshrc"
+
+# Powerlevel10k config
+link "$REPO_DIR/p10k.zsh" "$HOME/.p10k.zsh"
 
 # Hammerspoon (keep dir real for Spoons, link only init.lua)
 mkdir -p "$HOME/.hammerspoon"

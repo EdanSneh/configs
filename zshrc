@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -126,6 +133,20 @@ fi
 
 # GitLab package registry auth (used by uv for the "gitlab" index)
 
+# eza — ls replacement with file-type icons (muted color palette)
+export EZA_COLORS="di=0;33:ex=0:fi=0;37:ln=0;35:so=0;32:or=0;31:uu=0;37:un=0;37:gu=0;37:gn=0;37:da=0;37:sn=0;37:hd=0;37:ur=0;37:uw=0;31:ux=0;32:ue=0;32:gr=0;37:gw=0;31:gx=0;32:tr=0;37:tw=0;31:tx=0;32:su=0;33:sf=0;33:xa=0;37:*.sh=0:*.py=0;33:*.js=0;33:*.ts=0;33:*.json=0;33:*.yaml=0;33:*.yml=0;33:*.toml=0;33:*.md=0;33:*.rs=0;31:*.go=0;31:*.lock=0;90"
+alias ls="eza --icons --group-directories-first"
+alias ll="eza -lh --icons --group-directories-first"
+alias la="eza -lha --icons --group-directories-first"
+alias lt="eza --tree --level=2 --icons --group-directories-first"
+
 # Local secrets (GITLAB_TOKEN, UV_INDEX_* etc.) — not in the repo
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-eval "$(_LF_COMPLETE=zsh_source lf)"
+
+# lf file manager completions (only if lf is the Go binary, not a Python script)
+if command -v lf >/dev/null 2>&1 && file "$(command -v lf)" | grep -q "Mach-O\|ELF"; then
+  eval "$(_LF_COMPLETE=zsh_source lf)"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
