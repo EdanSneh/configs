@@ -13,12 +13,11 @@ cp "$HOME/.config/ghostty/themes/"* ghostty/themes/ 2>/dev/null || true
 
 # --- Vim ---
 echo "Copying vimrc..."
-# Sanitize: update email, wrap ctags path
-cat "$HOME/.vimrc" | \
-  sed 's|ophirsneh@gmail.com|edan.sneh@gmail.com|g' | \
-  sed 's|Ophir Sneh|Edan Sneh|g' | \
-  sed "s|let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'|if executable('ctags')\n  let g:Tlist_Ctags_Cmd=exepath('ctags')\nendif|" \
-  > vimrc
+cp "$HOME/.vimrc" vimrc
+
+# --- Neovim (LazyVim) ---
+echo "Syncing nvim config..."
+rsync -a --delete --exclude='.git' "$HOME/.config/nvim/" nvim/
 
 # --- Zsh ---
 echo "Copying zshrc (sanitizing secrets)..."
@@ -49,6 +48,10 @@ cp "$HOME/.hammerspoon/init.lua" hammerspoon/init.lua
 # --- Tmux ---
 echo "Copying tmux.conf..."
 cp "$HOME/.tmux.conf" tmux.conf
+
+# --- Global gitignore ---
+echo "Copying git ignore..."
+cp "$HOME/.config/git/ignore" git/ignore
 
 # --- Opencode ---
 echo "Copying opencode config..."

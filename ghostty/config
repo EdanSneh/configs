@@ -5,7 +5,8 @@ adjust-cursor-thickness = 250%
 background-opacity = 0.97
 keybind = global:cmd+option+ctrl+t=toggle_visibility
 maximize = true
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
+window-show-tab-bar = never
 link-url = true
 font-family = "JetBrainsMono Nerd Font"
 theme = Wombat

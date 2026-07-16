@@ -1,6 +1,6 @@
 # configs
 
-My personal dotfiles — Ghostty, Vim, Zsh, Tmux, Hammerspoon, Herdr, and opencode configs.
+My personal dotfiles — Ghostty, Vim/Neovim, Zsh, Tmux, Hammerspoon, Herdr, and opencode configs.
 
 ## Setup (new machine)
 
@@ -27,10 +27,12 @@ git add -A && git commit -m "sync dotfiles" && git push
 | File | Description |
 |---|---|
 | `ghostty/config` | Ghostty terminal config (Wombat theme, toggle_visibility keybind) |
-| `vimrc` | Vim config (Vundle plugins, wombat256mod, sane defaults) |
+| `vimrc` | Vim config (Vundle, wombat256mod, sources shared.vim) |
+| `nvim/` | Neovim config (LazyVim, treesitter, LSP, sources shared.vim) |
 | `zshrc` | Zsh config (oh-my-zsh, autosuggestions, syntax highlighting) |
 | `p10k.zsh` | Powerlevel10k prompt config (nerdfont-v3, lean style, icons) |
 | `tmux.conf` | Tmux config (vi mode, TPM, resurrect/continuum) |
+| `git/ignore` | Global gitignore (`.DS_Store`, `.plan/`, editor files, etc.) |
 | `hammerspoon/init.lua` | Mouse button 3 → Ghostty toggle_visibility |
 | `opencode/opencode.json` | opencode AI CLI config |
 | `herdr/config.toml` | Herdr terminal workspace manager config (keybinds, theme, UI) |

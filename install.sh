@@ -79,7 +79,15 @@ else
   done
 fi
 
-# Vim
+# Neovim (LazyVim) — symlink the whole config dir
+if [ ! -e "$HOME/.config/nvim" ] || [ -L "$HOME/.config/nvim" ]; then
+  ln -sfn "$REPO_DIR/nvim" "$HOME/.config/nvim"
+  echo "  linked: ~/.config/nvim -> $REPO_DIR/nvim"
+else
+  echo "  ~/.config/nvim exists and is not a symlink — skipping"
+fi
+
+# Vim (shares settings with nvim via shared.vim)
 link "$REPO_DIR/vimrc" "$HOME/.vimrc"
 
 # Zsh
@@ -95,6 +103,11 @@ link "$REPO_DIR/hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
 # Tmux
 link "$REPO_DIR/tmux.conf" "$HOME/.tmux.conf"
 
+# Global gitignore
+mkdir -p "$HOME/.config/git"
+link "$REPO_DIR/git/ignore" "$HOME/.config/git/ignore"
+git config --global core.excludesfile "$HOME/.config/git/ignore"
+
 # Opencode (keep dir real for node_modules/plugins, link individual files)
 mkdir -p "$HOME/.config/opencode"
 link "$REPO_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
@@ -108,7 +121,7 @@ link "$REPO_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 # --- Secrets (interactive) ---
 "$REPO_DIR/scripts/secret_setup.sh"
 
-# --- Install vim plugins ---
+# --- Install vim plugins (Vundle) ---
 if command -v vim >/dev/null 2>&1; then
   echo "Installing vim plugins..."
   vim +PluginInstall +qall 2>/dev/null || echo "  (vim PluginInstall may need a restart)"
