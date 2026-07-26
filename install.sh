@@ -3,7 +3,77 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# --- Parse flags ---
+INSTALL_GUI=true
+for arg in "$@"; do
+  case "$arg" in
+    --no-gui) INSTALL_GUI=false ;;
+  esac
+done
+
 echo "=== Installing dotfiles from $REPO_DIR ==="
+
+# --- Homebrew ---
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
+else
+  echo "Homebrew already installed."
+fi
+
+# --- CLI tools ---
+echo "Installing CLI tools..."
+
+if ! command -v nvim >/dev/null 2>&1; then
+  echo "Installing neovim..."
+  brew install neovim
+else
+  echo "neovim already installed, skipping."
+fi
+
+if ! command -v tmux >/dev/null 2>&1; then
+  echo "Installing tmux..."
+  brew install tmux
+else
+  echo "tmux already installed, skipping."
+fi
+
+if ! command -v herdr >/dev/null 2>&1; then
+  echo "Installing herdr..."
+  brew install herdr
+else
+  echo "herdr already installed, skipping."
+fi
+
+if ! command -v opencode >/dev/null 2>&1; then
+  echo "Installing opencode..."
+  brew tap anomalyco/tap
+  brew install opencode
+else
+  echo "opencode already installed, skipping."
+fi
+
+# --- GUI tools (skip with --no-gui) ---
+if [ "$INSTALL_GUI" = true ]; then
+  echo "Installing GUI tools..."
+
+  if [ ! -d "/Applications/Ghostty.app" ]; then
+    echo "Installing ghostty..."
+    brew install --cask ghostty
+  else
+    echo "ghostty already installed, skipping."
+  fi
+
+  if [ ! -d "/Applications/Hammerspoon.app" ]; then
+    echo "Installing hammerspoon..."
+    brew install --cask hammerspoon
+  else
+    echo "hammerspoon already installed, skipping."
+  fi
+else
+  echo "Skipping GUI tools (--no-gui)."
+fi
 
 # --- oh-my-zsh ---
 if [ ! -d "$HOME/.oh-my-zsh" ]; then

@@ -9,6 +9,12 @@ git clone --recurse-submodules https://github.com/EdanSneh/configs.git ~/dotfile
 cd ~/dotfiles && ./install.sh
 ```
 
+`install.sh` installs all required apps via Homebrew (neovim, tmux, herdr, opencode, ghostty, hammerspoon) and symlinks their configs. To skip GUI apps (ghostty, hammerspoon):
+
+```bash
+./install.sh --no-gui
+```
+
 Then:
 1. Enter tokens when prompted (or run `./scripts/secret_setup.sh` later)
 2. Grant Hammerspoon Accessibility permissions (System Settings → Privacy & Security → Accessibility)
