@@ -54,6 +54,41 @@ else
   echo "opencode already installed, skipping."
 fi
 
+if ! command -v eza >/dev/null 2>&1; then
+  echo "Installing eza..."
+  brew install eza
+else
+  echo "eza already installed, skipping."
+fi
+
+if ! command -v pyenv >/dev/null 2>&1; then
+  echo "Installing pyenv..."
+  brew install pyenv
+else
+  echo "pyenv already installed, skipping."
+fi
+
+if ! command -v gcloud >/dev/null 2>&1; then
+  echo "Installing google-cloud-sdk..."
+  brew install --cask google-cloud-sdk
+else
+  echo "google-cloud-sdk already installed, skipping."
+fi
+
+if ! command -v lf >/dev/null 2>&1; then
+  echo "Installing lf..."
+  brew install lf
+else
+  echo "lf already installed, skipping."
+fi
+
+if ! command -v ctags >/dev/null 2>&1; then
+  echo "Installing universal-ctags..."
+  brew install universal-ctags
+else
+  echo "ctags already installed, skipping."
+fi
+
 # --- GUI tools (skip with --no-gui) ---
 if [ "$INSTALL_GUI" = true ]; then
   echo "Installing GUI tools..."
@@ -70,6 +105,14 @@ if [ "$INSTALL_GUI" = true ]; then
     brew install --cask hammerspoon
   else
     echo "hammerspoon already installed, skipping."
+  fi
+
+  if ! brew list --cask font-jetbrains-mono-nerd-font >/dev/null 2>&1; then
+    echo "Installing JetBrainsMono Nerd Font..."
+    brew tap homebrew/cask-fonts
+    brew install --cask font-jetbrains-mono-nerd-font
+  else
+    echo "JetBrainsMono Nerd Font already installed, skipping."
   fi
 else
   echo "Skipping GUI tools (--no-gui)."
@@ -177,6 +220,16 @@ link "$REPO_DIR/tmux.conf" "$HOME/.tmux.conf"
 mkdir -p "$HOME/.config/git"
 link "$REPO_DIR/git/ignore" "$HOME/.config/git/ignore"
 git config --global core.excludesfile "$HOME/.config/git/ignore"
+
+# Git identity (only set if not already configured)
+if [ -z "$(git config --global user.name)" ]; then
+  git config --global user.name "Edan Sneh"
+  echo "  Set git user.name = Edan Sneh"
+fi
+if [ -z "$(git config --global user.email)" ]; then
+  git config --global user.email "edan.sneh@khealth.com"
+  echo "  Set git user.email = edan.sneh@khealth.com"
+fi
 
 # Opencode (keep dir real for node_modules/plugins, link individual files)
 mkdir -p "$HOME/.config/opencode"

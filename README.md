@@ -5,11 +5,12 @@ My personal dotfiles — Ghostty, Vim/Neovim, Zsh, Tmux, Hammerspoon, Herdr, and
 ## Setup (new machine)
 
 ```bash
+xcode-select --install
 git clone --recurse-submodules https://github.com/EdanSneh/configs.git ~/dotfiles
 cd ~/dotfiles && ./install.sh
 ```
 
-`install.sh` installs all required apps via Homebrew (neovim, tmux, herdr, opencode, ghostty, hammerspoon) and symlinks their configs. To skip GUI apps (ghostty, hammerspoon):
+`install.sh` installs all required apps via Homebrew (neovim, tmux, herdr, opencode, eza, pyenv, google-cloud-sdk, lf, universal-ctags, ghostty, hammerspoon, JetBrainsMono Nerd Font) and symlinks their configs. It also sets git identity (user.name, user.email) if not already configured. To skip GUI apps (ghostty, hammerspoon, font):
 
 ```bash
 ./install.sh --no-gui
