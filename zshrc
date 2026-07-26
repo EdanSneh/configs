@@ -143,10 +143,5 @@ alias lt="eza --tree --level=2 --icons --group-directories-first"
 # Local secrets (GITLAB_TOKEN, UV_INDEX_* etc.) — not in the repo
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-# lf file manager completions (only if lf is the Go binary, not a Python script)
-if command -v lf >/dev/null 2>&1 && file "$(command -v lf)" | grep -q "Mach-O\|ELF"; then
-  eval "$(_LF_COMPLETE=zsh_source lf)"
-fi
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

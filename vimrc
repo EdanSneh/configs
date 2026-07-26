@@ -32,8 +32,10 @@ syntax enable
 " set dark background
 set background=dark
 
-" set colorscheme
-colorscheme wombat256mod
+" set colorscheme (only if plugin is installed, avoids error on first run)
+if !empty(globpath(&rtp, "colors/wombat256mod.vim"))
+  colorscheme wombat256mod
+endif
 
 " disable cterm bg (so transparency works)
 hi Normal guibg=NONE ctermbg=NONE

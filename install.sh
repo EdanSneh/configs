@@ -14,12 +14,18 @@ done
 echo "=== Installing dotfiles from $REPO_DIR ==="
 
 # --- Homebrew ---
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
-else
+if command -v brew >/dev/null 2>&1; then
   echo "Homebrew already installed."
+elif [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo "Homebrew already installed (added to PATH for this script)."
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+  echo "Homebrew already installed (added to PATH for this script)."
+else
+  echo "Installing Homebrew..."
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
 fi
 
 # --- CLI tools ---
@@ -27,21 +33,21 @@ echo "Installing CLI tools..."
 
 if ! command -v nvim >/dev/null 2>&1; then
   echo "Installing neovim..."
-  brew install neovim
+  brew install -y neovim
 else
   echo "neovim already installed, skipping."
 fi
 
 if ! command -v tmux >/dev/null 2>&1; then
   echo "Installing tmux..."
-  brew install tmux
+  brew install -y tmux
 else
   echo "tmux already installed, skipping."
 fi
 
 if ! command -v herdr >/dev/null 2>&1; then
   echo "Installing herdr..."
-  brew install herdr
+  brew install -y herdr
 else
   echo "herdr already installed, skipping."
 fi
@@ -49,42 +55,42 @@ fi
 if ! command -v opencode >/dev/null 2>&1; then
   echo "Installing opencode..."
   brew tap anomalyco/tap
-  brew install opencode
+  brew install -y opencode
 else
   echo "opencode already installed, skipping."
 fi
 
 if ! command -v eza >/dev/null 2>&1; then
   echo "Installing eza..."
-  brew install eza
+  brew install -y eza
 else
   echo "eza already installed, skipping."
 fi
 
 if ! command -v pyenv >/dev/null 2>&1; then
   echo "Installing pyenv..."
-  brew install pyenv
+  brew install -y pyenv
 else
   echo "pyenv already installed, skipping."
 fi
 
 if ! command -v gcloud >/dev/null 2>&1; then
   echo "Installing google-cloud-sdk..."
-  brew install --cask google-cloud-sdk
+  brew install -y --cask google-cloud-sdk
 else
   echo "google-cloud-sdk already installed, skipping."
 fi
 
 if ! command -v lf >/dev/null 2>&1; then
   echo "Installing lf..."
-  brew install lf
+  brew install -y lf
 else
   echo "lf already installed, skipping."
 fi
 
 if ! command -v ctags >/dev/null 2>&1; then
   echo "Installing universal-ctags..."
-  brew install universal-ctags
+  brew install -y universal-ctags
 else
   echo "ctags already installed, skipping."
 fi
@@ -95,22 +101,21 @@ if [ "$INSTALL_GUI" = true ]; then
 
   if [ ! -d "/Applications/Ghostty.app" ]; then
     echo "Installing ghostty..."
-    brew install --cask ghostty
+    brew install -y --cask ghostty
   else
     echo "ghostty already installed, skipping."
   fi
 
   if [ ! -d "/Applications/Hammerspoon.app" ]; then
     echo "Installing hammerspoon..."
-    brew install --cask hammerspoon
+    brew install -y --cask hammerspoon
   else
     echo "hammerspoon already installed, skipping."
   fi
 
   if ! brew list --cask font-jetbrains-mono-nerd-font >/dev/null 2>&1; then
     echo "Installing JetBrainsMono Nerd Font..."
-    brew tap homebrew/cask-fonts
-    brew install --cask font-jetbrains-mono-nerd-font
+    brew install -y --cask font-jetbrains-mono-nerd-font
   else
     echo "JetBrainsMono Nerd Font already installed, skipping."
   fi
@@ -246,8 +251,8 @@ link "$REPO_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 
 # --- Install vim plugins (Vundle) ---
 if command -v vim >/dev/null 2>&1; then
-  echo "Installing vim plugins..."
-  vim +PluginInstall +qall 2>/dev/null || echo "  (vim PluginInstall may need a restart)"
+  echo "Installing vim plugins (output may take a moment to appear)..."
+  vim +PluginInstall +qall || echo "  (vim PluginInstall may need a restart)"
 else
   echo "vim not found — skipping plugin install. Install vim and run: vim +PluginInstall +qall"
 fi
