@@ -3,25 +3,52 @@
   "instructions": [
     "AGENTS.md"
   ],
-  "model": "ai-proxy-anthropic/anthropic/claude-sonnet-5",
+  "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
   "agent": {
     "build": {
-      "model": "ai-proxy-anthropic/anthropic/claude-sonnet-5"
+      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
+      "options": {},
+      "permission": {}
     },
     "plan": {
-      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast"
+      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
+      "options": {},
+      "permission": {}
     },
     "explore": {
-      "model": "headroom-compat/anthropic/claude-haiku-4-5-20251001"
+      "model": "headroom-compat/anthropic/claude-haiku-4-5-20251001",
+      "options": {},
+      "permission": {}
     }
   },
   "mode": {
     "build": {
-      "model": "ai-proxy-anthropic/anthropic/claude-sonnet-5"
+      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
+      "options": {},
+      "permission": {}
     },
     "plan": {
-      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast"
+      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
+      "options": {},
+      "permission": {}
     }
   },
-  "permission": "allow"
+  "permission": {
+    "*": "allow"
+  },
+  "mcp": {
+    "linear": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "mcp-remote",
+        "https://mcp.linear.app/mcp"
+      ],
+      "enabled": true
+    }
+  },
+  "plugin": [
+    "@whisperopencode/push"
+  ]
 }
