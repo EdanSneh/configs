@@ -29,3 +29,5 @@ translate = require("translate")
 --   return false, event
 -- end
 -- eventtap.new({eventTypes.leftMouseDown, eventTypes.rightMouseDown, eventTypes.otherMouseDown}, showMouseButton):start()
+
+require("app_switcher")

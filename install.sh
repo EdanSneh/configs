@@ -218,6 +218,7 @@ link "$REPO_DIR/p10k.zsh" "$HOME/.p10k.zsh"
 mkdir -p "$HOME/.hammerspoon"
 link "$REPO_DIR/hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
 link "$REPO_DIR/hammerspoon/translate.lua" "$HOME/.hammerspoon/translate.lua"
+link "$REPO_DIR/hammerspoon/app_switcher.lua" "$HOME/.hammerspoon/app_switcher.lua"
 
 # Tmux
 link "$REPO_DIR/tmux.conf" "$HOME/.tmux.conf"
