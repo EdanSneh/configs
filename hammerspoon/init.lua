@@ -19,6 +19,8 @@ end
 -- FIX: Assigned to a global variable (no 'local' keyword) so Lua won't delete it
 mouseWatcher = hs.eventtap.new({eventTypes.otherMouseDown}, handleMouseEvent):start()
 
+translate = require("translate")
+
 
 -- --- Debug: show which mouse button is pressed ---
 -- local function showMouseButton(event)

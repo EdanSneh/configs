@@ -214,9 +214,10 @@ link "$REPO_DIR/zshrc" "$HOME/.zshrc"
 # Powerlevel10k config
 link "$REPO_DIR/p10k.zsh" "$HOME/.p10k.zsh"
 
-# Hammerspoon (keep dir real for Spoons, link only init.lua)
+# Hammerspoon (keep dir real for Spoons, link config files individually)
 mkdir -p "$HOME/.hammerspoon"
 link "$REPO_DIR/hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
+link "$REPO_DIR/hammerspoon/translate.lua" "$HOME/.hammerspoon/translate.lua"
 
 # Tmux
 link "$REPO_DIR/tmux.conf" "$HOME/.tmux.conf"
