@@ -6,14 +6,18 @@
   "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
   "agent": {
     "build": {
-      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
-      "options": {},
-      "permission": {}
+      "model": "ai-proxy-openai-us/gpt-5.6-terra"
     },
     "plan": {
-      "model": "custom-fireworks/accounts/fireworks/routers/glm-5p2-fast",
-      "options": {},
-      "permission": {}
+      "model": "ai-proxy-openai-us/gpt-5.6-sol"
+    },
+    "deep-plan": {
+      "description": "Deep planning with Claude Opus for complex, multi-step design work.",
+      "mode": "primary",
+      "model": "ai-proxy-anthropic/anthropic/claude-opus-4-8",
+      "permission": {
+        "edit": "deny"
+      }
     },
     "explore": {
       "model": "headroom-compat/anthropic/claude-haiku-4-5-20251001",
@@ -33,18 +37,11 @@
       "permission": {}
     }
   },
-  "permission": {
-    "*": "allow"
-  },
+  "permission": "allow",
   "mcp": {
     "linear": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-remote",
-        "https://mcp.linear.app/mcp"
-      ],
+      "type": "remote",
+      "url": "https://mcp.linear.app/mcp",
       "enabled": true
     }
   },

@@ -149,3 +149,5 @@ alias lt="eza --tree --level=2 --icons --group-directories-first"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+# langbroker-cli is now installed as a PyInstaller binary at ~/.local/bin/langbroker-cli
