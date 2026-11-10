@@ -1,7 +1,9 @@
 # Global Instructions
 
 - Do not create helper functions that are only referenced once unless explicitly asked.
+- Put function comments in a docstring inside the function body by default.
 - When working on a branch stack, analyze the stack first and decide which commit/branch a change logically belongs on before making it.
 - Do not create a new commit unless explicitly asked. When working on a feature branch with an existing relevant commit, append the changes to that commit instead.
 - After amending a branch in a stack, rebase the dependent branches to keep the stack consistent.
+- Create and keep Git worktrees under `~/ws/`, including temporary worktrees; do not place them under system temporary directories.
 - When switching from plan mode to build mode, save the plan to `.plan/` in the project root as a markdown file named after the task (e.g. `.plan/add-auth-to-settings.md`). Create the `.plan/` directory if it does not exist. This directory is globally gitignored.

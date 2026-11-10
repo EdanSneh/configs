@@ -31,3 +31,8 @@ translate = require("translate")
 -- eventtap.new({eventTypes.leftMouseDown, eventTypes.rightMouseDown, eventTypes.otherMouseDown}, showMouseButton):start()
 
 require("app_switcher")
+
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "c", function()
+  local enabled = hs.caffeinate.toggle("systemIdle")
+  hs.alert.show(enabled and "Caffeinated: system stays awake" or "Uncaffeinated: normal sleep")
+end)

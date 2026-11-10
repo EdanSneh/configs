@@ -151,3 +151,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 # langbroker-cli is now installed as a PyInstaller binary at ~/.local/bin/langbroker-cli
+
+# Akeyless CLI completion
+autoload -Uz bashcompinit && bashcompinit
+source /Users/edan.sneh/.akeyless/akeyless.bash
